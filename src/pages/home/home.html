@@ -1,14 +1,29 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>
-      Ionic Blank
+      Signature Pad
     </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<ion-content>
+  <div text-center style="padding: 10px;"><b>Please draw your Signature</b></div>
+
+  <signature-pad [options]="signaturePadOptions"
+    (onBeginEvent)="drawStart()"
+    (onEndEvent)="drawComplete()"></signature-pad>
+
+  <ion-row>
+    <ion-col>
+      <button ion-button full color="light" (click)="clearPad()">Clear</button>
+    </ion-col>
+    <ion-col>
+      <button ion-button full color="secondary" (click)="savePad()">Done</button>
+    </ion-col>
+  </ion-row>
+
+  <div class="res-div" *ngIf="signature">
+    <img class="res-img" [src]="signature" *ngIf="signature" />
+  </div>
+
 </ion-content>
